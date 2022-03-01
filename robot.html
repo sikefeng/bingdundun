@@ -1,97 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>冰墩墩</title>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-			html,body{
-				padding:0;
-				margin:0;
-			}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>小可爱</title>
 
-    </style>
+
 </head>
+
 <body>
-<script type="module">
-			import * as THREE from './js/three.module.js';
 
-			import { OrbitControls } from './js/OrbitControls.js';
-			import { GLTFLoader } from './js/GLTFLoader.js';
-
-			let camera, scene, renderer;
-
-			init();
-			render();
-
-			function init() {
-
-				const container = document.createElement( 'div' );
-				document.body.appendChild( container );
-
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
-				camera.position.set( 0, 0, 3 );
-
-				scene = new THREE.Scene();
-
-				const envmap = new THREE.TextureLoader().load( "model/env.jpg",function(texture){
-					const loader = new GLTFLoader().setPath( 'model/' );
-					loader.load( 'dwendwen.gltf', function ( gltf ) {
-						gltf.scene.traverse( function ( child ) {
-							if(child.name=="outer"||child.name=="mask"){
-								child.material.envMap = texture;
-								child.material.envMap.mapping = THREE.EquirectangularReflectionMapping;
-								child.material.envMapIntensity=2;
-							}else if(child.name=="body"){
-								var map = child.material.map;
-								child.material = new THREE.MeshToonMaterial({map:map});
-							}
-						} );
-
-						scene.add( gltf.scene );
-						render();
-					} );
-				});
-
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild( renderer.domElement );
-				
-				const controls = new OrbitControls( camera, renderer.domElement );
-				controls.addEventListener( 'change', render ); // use if there is no animation loop
-				controls.minDistance = 2;
-				controls.maxDistance = 10;
-				controls.target.set( 0, 0, - 0.2 );
-				controls.update();
-
-				window.addEventListener( 'resize', onWindowResize );
-			}
-
-			function onWindowResize() {
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				render();
-			}
-
-			function render() {
-				renderer.render( scene, camera );
-			}
-
-</script>
-<div style="position:fixed ; bottom:0px;width:1002">
-    <div align="right">
-        <a href="https://sikefeng.github.io/bingdundun/download.html">-来源：智汇助手</a>
-    </div>
-</div>
-
-<script
-        src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js"></script>
-<script type="text/javascript">
+<div id="page_end_html">
+        <script
+         src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js"></script>
+     <script type="text/javascript">
          L2Dwidget.init();
-    </script>
+     </script>
+
+<script src="https://blog-static.cnblogs.com/files/yjlblog/cursor-effects.js"></script>
+<canvas width="1366" height="662" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+    </div>
 
 </body>
 </html>
